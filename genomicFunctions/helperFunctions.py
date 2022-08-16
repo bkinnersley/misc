@@ -17,9 +17,9 @@ def convert_date_to_datetime(x):
     month = int(x_split[1])
     day = int(x_split[0])
    
-   x_datetime = datetime.date(year, month, day)
+  x_datetime = datetime.date(year, month, day)
    
-   return x_datetime
+  return x_datetime
    
 def convert_timedelta_to_months(x):
   x_days = x.days
