@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(
-  name="helper_functions",
+  name="helperFunctions",
   version='0.1.0',
   description="Helper functions for genomics analysis",
   long_description=open('README.md').read(),
