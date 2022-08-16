@@ -14,7 +14,7 @@ setup(
   python_requires='>= 3.7',
   author_email="b.kinnersley@ucl.ac.uk",
   packages=["functions"],
-  install_requires=["datetime", "re"],
+  install_requires=["datetime"],
   include_package_data=True,
   zip_safe=False
 )
