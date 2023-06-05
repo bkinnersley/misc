@@ -196,83 +196,83 @@ for line in opened_input_vcf:
 				if HGVSp_chosen == '':
 					HGVSp_chosen = 'NA'
 							
-		# rescuing TERT promoter mutations
-		if chr == 'chr5' and (pos == '1295113' or pos == '1295135'):
-			SYMBOL_chosen = 'TERT'
-			transcript_chosen = 'ENST00000310581'
-			consequence_chosen = 'promoter_variant'
-			HGVSp_chosen = 'NA'
-			HGVSc_chosen = 'NA'
+	# rescuing TERT promoter mutations
+	if chr == 'chr5' and (pos == '1295113' or pos == '1295135'):
+		SYMBOL_chosen = 'TERT'
+		transcript_chosen = 'ENST00000310581'
+		consequence_chosen = 'promoter_variant'
+		HGVSp_chosen = 'NA'
+		HGVSc_chosen = 'NA'
 					
-		if ref in ['A', 'C', 'G', 'T'] and alt in ['A', 'C', 'G', 'T']:
-			alt_type = 'SNV'
+	if ref in ['A', 'C', 'G', 'T'] and alt in ['A', 'C', 'G', 'T']:
+		alt_type = 'SNV'
+	else:
+		alt_type = 'INDEL'
+				
+	# output nonsynonymous mutations in query genes
+	if transcript_chosen in transcript_list and consequence_chosen in nonsynonymous_list:
+				
+		output_writer.writerow([str(SYMBOL_chosen), str(transcript_chosen), str(chr), str(pos), str(ref), str(alt), str(HGVSg_chosen), str(HGVSc_chosen), str(HGVSp_chosen), str(consequence_chosen)])
+				
+		# query OncoKB API to get annotation
+				
+		json_output = output_dir+'/'+str(chr)+'_'+str(pos)+'_'+str(ref)+'_'+str(alt)+'_'+str(SYMBOL_chosen)+'_'+str(HGVSp_chosen)+'_oncoKB_query.json'
+				
+		if consequence_chosen in nonsynonymous_list and HGVSp_chosen != "NA":
+			HGVSp_split = HGVSp_chosen.split(':')
+			HGVSp_shortened = HGVSp_split[1]
+					
+			protein_geturl = 'https://www.oncokb.org/api/v1/annotate/mutations/byProteinChange?'
+			protein_geturl += 'hugoSymbol='+str(SYMBOL_chosen)+'&alteration='+str(HGVSp_shortened)+'&consequence='+str(consequence_chosen)
+			protein_geturl += '&referenceGenome=GRCh38&tumorType='+str(subtype)
+					
+		elif consequence_chosen in nonsynonymous_list:
+			protein_geturl = 'https://www.oncokb.org/api/v1/annotate/mutations/byProteinChange?'
+			protein_geturl += 'hugoSymbol='+str(SYMBOL_chosen)+'&alteration='+str(HGVSp_chosen)+'&consequence='+str(consequence_chosen)
+			protein_geturl += '&referenceGenome=GRCh38&tumorType='+str(subtype)
+					
+		if alt_type == 'INDEL':
+			geturl = 'https://www.oncokb.org/api/v1/annotate/mutations/byHGVSg?'
+			geturl += 'hgvsg='+str(HGVSg_chosen)
+			geturl += '&referenceGenome=GRCh38&tumorType='+str(subtype)
+					
 		else:
-			alt_type = 'INDEL'
+			geturl = 'https://www.oncokb.org/api/v1/annotate/mutations/byHGVSg?'
+			geturl += 'hgvsg='+str(chr)+':g.'+str(pos)+str(ref)+'%3E'+str(alt)
+			geturl += '&referenceGenome=GRCh38&tumorType='+str(subtype)
 				
-		# output nonsynonymous mutations in query genes
-		if transcript_chosen in transcript_list and consequence_chosen in nonsynonymous_list:
+		query_ticker = 1
+		query_success = 'NO'
+		knownEffect = ''
+		hugoSymbol = ''
 				
-			output_writer.writerow([str(SYMBOL_chosen), str(transcript_chosen), str(chr), str(pos), str(ref), str(alt), str(HGVSg_chosen), str(HGVSc_chosen), str(HGVSp_chosen), str(consequence_chosen)])
-				
-			# query OncoKB API to get annotation
-				
-			json_output = output_dir+'/'+str(chr)+'_'+str(pos)+'_'+str(ref)+'_'+str(alt)+'_'+str(SYMBOL_chosen)+'_'+str(HGVSp_chosen)+'_oncoKB_query.json'
-				
-			if consequence_chosen in nonsynonymous_list and HGVSp_chosen != "NA":
-				HGVSp_split = HGVSp_chosen.split(':')
-				HGVSp_shortened = HGVSp_split[1]
-					
-				protein_geturl = 'https://www.oncokb.org/api/v1/annotate/mutations/byProteinChange?'
-				protein_geturl += 'hugoSymbol='+str(SYMBOL_chosen)+'&alteration='+str(HGVSp_shortened)+'&consequence='+str(consequence_chosen)
-				protein_geturl += '&referenceGenome=GRCh38&tumorType='+str(subtype)
-					
-			elif consequence_chosen in nonsynonymous_list:
-				protein_geturl = 'https://www.oncokb.org/api/v1/annotate/mutations/byProteinChange?'
-				protein_geturl += 'hugoSymbol='+str(SYMBOL_chosen)+'&alteration='+str(HGVSp_chosen)+'&consequence='+str(consequence_chosen)
-				protein_geturl += '&referenceGenome=GRCh38&tumorType='+str(subtype)
-					
-			if alt_type == 'INDEL':
-				geturl = 'https://www.oncokb.org/api/v1/annotate/mutations/byHGVSg?'
-				geturl += 'hgvsg='+str(HGVSg_chosen)
-				geturl += '&referenceGenome=GRCh38&tumorType='+str(subtype)
-					
+		for i in range (1, 11):
+			if i == 10 and query_success != "YES":
+				print('failed 10 times so exiting, perhaps try again later')
+				sys.exit()
+						
+			elif query_success == 'YES':
+				continue
+						
+			elif i > 1 and getresponse.status_code == 200 and knownEffect != '' and hugoSymbol != '':
+				annotation.append(getresponse.json())
+				query_success = 'YES'
+				continue
+						
 			else:
-				geturl = 'https://www.oncokb.org/api/v1/annotate/mutations/byHGVSg?'
-				geturl += 'hgvsg='+str(chr)+':g.'+str(pos)+str(ref)+'%3E'+str(alt)
-				geturl += '&referenceGenome=GRCh38&tumorType='+str(subtype)
-				
-			query_ticker = 1
-			query_success = 'NO'
-			knownEffect = ''
-			hugoSymbol = ''
-				
-			for i in range (1, 11):
-				if i == 10 and query_success != "YES":
-					print('failed 10 times so exiting, perhaps try again later')
-					sys.exit()
-						
-				elif query_success == 'YES':
-					continue
-						
-				elif i > 1 and getresponse.status_code == 200 and knownEffect != '' and hugoSymbol != '':
-					annotation.append(getresponse.json())
-					query_success = 'YES'
-					continue
-						
+				if len(geturl) > 200:
+					getresponse = makeoncokbgetrequest(protein_geturl)
 				else:
-					if len(geturl) > 200:
-						getresponse = makeoncokbgetrequest(protein_geturl)
-					else:
-						getresponse = makeoncokbgetrequest(geturl)
+					getresponse = makeoncokbgetrequest(geturl)
 							
-					time.sleep(1)
+				time.sleep(1)
 						
-					if getresponse.status_code != 200:
-						getresponse = makeoncokbgetrequest(protein_geturl)
+				if getresponse.status_code != 200:
+					getresponse = makeoncokbgetrequest(protein_geturl)
 							
-					mutation_dict = getresponse.json()
-					knownEffect = mutation_dict['mutationEffect']['knownEffect']
-					hugoSymbol = mutation_dict['query']['hugoSymbol']
+				mutation_dict = getresponse.json()
+				knownEffect = mutation_dict['mutationEffect']['knownEffect']
+				hugoSymbol = mutation_dict['query']['hugoSymbol']
 						
 combined_json = output_dir+'/'+plate_tumour+'_combined_mutations_OncoKB_query.json'
 opened_combined_json = open(combined_json, 'w')
