@@ -212,7 +212,7 @@ for line in opened_input_vcf:
 		# output nonsynonymous mutations in query genes
 		if transcript_chosen in transcript_list and consequence_chosen in nonsynonymous_list:
 				
-			output_writer.writerow([str(SYMBOL_chosen), str(transcript_chosen), str(chr), str(pos), str(ref), str(alt), str(HGVSg_chosen), str(HGVSc_chosen), str(HGVSp_chosen), str(consequence_chose)])
+			output_writer.writerow([str(SYMBOL_chosen), str(transcript_chosen), str(chr), str(pos), str(ref), str(alt), str(HGVSg_chosen), str(HGVSc_chosen), str(HGVSp_chosen), str(consequence_chosen)])
 				
 			# query OncoKB API to get annotation
 				
