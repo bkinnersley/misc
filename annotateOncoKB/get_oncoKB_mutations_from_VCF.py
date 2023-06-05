@@ -182,17 +182,17 @@ for line in opened_input_vcf:
 						HGVSg_chosen = HGVSg
 							
 					elif int(consequence_severity_dict[consequence]) < int(consequence_severity_dict[consequence_chosen]):
-							consequence_chosen = consequence
-							transcript_chosen = transcript
-							IMPACT_chosen = IMPACT
-							Gene_chosen = Gene
-							SYMBOL_chosen = SYMBOL
-							HGVSc_chosen = HGVSc
-							HGVSp_chosen = HGVSp
-							HGVSg_chosen = HGVSg
+						consequence_chosen = consequence
+						transcript_chosen = transcript
+						IMPACT_chosen = IMPACT
+						Gene_chosen = Gene
+						SYMBOL_chosen = SYMBOL
+						HGVSc_chosen = HGVSc
+						HGVSp_chosen = HGVSp
+						HGVSg_chosen = HGVSg
 							
-						if HGVSp_chosen == '':
-							HGVSp_chosen = 'NA'
+					if HGVSp_chosen == '':
+						HGVSp_chosen = 'NA'
 							
 				# rescuing TERT promoter mutations
 				if chr == 'chr5' and (pos == '1295113' or pos == '1295135'):
