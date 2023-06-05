@@ -180,8 +180,8 @@ for line in opened_input_vcf:
 						HGVSc_chosen = HGVSc
 						HGVSp_chosen = HGVSp
 						HGVSg_chosen = HGVSg
-						
-						elif int(consequence_severity_dict[consequence]) < int(consequence_severity_dict[consequence_chosen]):
+							
+					elif int(consequence_severity_dict[consequence]) < int(consequence_severity_dict[consequence_chosen]):
 							consequence_chosen = consequence
 							transcript_chosen = transcript
 							IMPACT_chosen = IMPACT
