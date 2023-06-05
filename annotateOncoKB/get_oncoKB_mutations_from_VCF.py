@@ -247,7 +247,7 @@ for line in opened_input_vcf:
 				
 				for i in range (1, 11):
 					if i == 10 and query_success != "YES":
-						print('failed 10 times so exiting, perhaps try again later'
+						print('failed 10 times so exiting, perhaps try again later')
 						sys.exit()
 						
 					elif query_success == 'YES':
