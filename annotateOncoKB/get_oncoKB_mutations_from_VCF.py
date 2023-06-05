@@ -119,8 +119,8 @@ for line in opened_input_vcf:
 	# lookup VEP annotation orderings in VCF header
 	if line.startswith('##INFO=<ID=CSQ,Number='):
 		temp1 = line.split(':')
-		temp2 = temp1[1].strip(),split('"')
-		vep_fields = temp2[0].strip().spli('|')
+		temp2 = temp1[1].strip().split('"')
+		vep_fields = temp2[0].strip().split('|')
 		
 		vep_ticker = 0
 		
