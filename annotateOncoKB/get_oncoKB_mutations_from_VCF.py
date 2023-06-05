@@ -133,7 +133,7 @@ for line in opened_input_vcf:
 		
 	line = line.strip()
 	fields = line.split('\t')
-	chr, pos, id, ref, alt, qual, filter, info, format = fields.split('\t', 8)
+	chr, pos, id, ref, alt, qual, filter, info, format = line.split('\t', 8)
 		
 	# only keep PASS mutations in chr1-22, X, Y
 	if chr not in chromosomes or (filter != "PASS" and filter != "NA"):
