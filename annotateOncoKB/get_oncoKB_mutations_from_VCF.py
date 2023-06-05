@@ -29,27 +29,27 @@ chromosomes = ['chr1', 'chr2', 'chr3', 'chr4', 'chr5', 'chr6', 'chr7', 'chr8', '
 
 if os.path.isfile(input_vcf):
 	if input_vcf.endswith('.gz'):
-		opened_input_vcf = gzip.open(input_vcf, 'rb')
+		opened_input_vcf = gzip.open(input_vcf, 'rt', encoding='utf-8')
 	else:
-		opened_input_vcf = open(input_vcf, 'rb')
+		opened_input_vcf = open(input_vcf, 'rt', encoding='utf-8')
 else:
 	print('cannot open '+input_vcf)
 	sys.exit()
 	
 if os.path.isfile(transcripts_file):
 	if transcripts_file.endswith('.gz'):
-		opened_transcripts_file = gzip.open(transcripts_file, 'rb')
+		opened_transcripts_file = gzip.open(transcripts_file, 'rt', encoding='utf-8')
 	else:
-		opened_transcripts_file = open(transcripts_file, 'rb')
+		opened_transcripts_file = open(transcripts_file, 'rt', encoding='utf-8')
 else:
 	print('cannot open '+transcripts_file)
 	sys.exit()
 	
 if os.path.isfile(token):
 	if token.endswith('.gz'):
-		opened_token = gzip.open(token, 'rb')
+		opened_token = gzip.open(token, 'rt', encoding='utf-8')
 	else:
-		opened_token = open(token, 'rb')
+		opened_token = open(token, 'rt', encoding='utf-8')
 else:
 	print('cannot open '+token)
 	sys.exit()
