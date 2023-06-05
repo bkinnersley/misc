@@ -125,7 +125,7 @@ for line in opened_input_vcf:
 		vep_ticker = 0
 		
 		for anno in vep_fields:
-			vep_lookup_hash[anno] = vep_ticker
+			vep_lookup_dict[anno] = vep_ticker
 			vep_ticker += 1
 			
 		if line.startswith('##') or line.startswith('#CHROM'):
