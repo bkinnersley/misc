@@ -54,7 +54,7 @@ else:
 	print('cannot open '+token)
 	sys.exit()
 	
-token_str = opened_token.readline().strip()
+token_str = str(opened_token.readline().strip())
 
 print('found token '+token_str)
 
