@@ -100,7 +100,8 @@ def makeoncokbgetrequest(url):
 # write to output
 
 opened_output = open(output, 'w')
-opened_output.write('gene', 'transcript', 'HGVSg', 'HGVSc', 'HGVSp', 'consequence\n', sep='\t')
+opened_output.write('gene', 'transcript', 'HGVSg', 'HGVSc', 'HGVSp', 'consequence', sep='\t')
+opened_output.write('\n')
 
 gene_mutations_list_dict = {}
 mutation_count_dict = {}
