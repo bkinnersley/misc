@@ -11,6 +11,7 @@ import re
 import requests
 import json
 import time
+import csv
 
 if len(sys.argv) == 8:
 	input_vcf = sys.argv[1]
@@ -100,8 +101,8 @@ def makeoncokbgetrequest(url):
 # write to output
 
 opened_output = open(output, 'w')
-opened_output.write('gene', 'transcript', 'HGVSg', 'HGVSc', 'HGVSp', 'consequence', sep='\t')
-opened_output.write('\n')
+output_writer = csv.writer(opened_output, delimiter = '\t')
+output_writer.writerow(['gene', 'transcript', 'HGVSg', 'HGVSc', 'HGVSp', 'consequence'])
 
 gene_mutations_list_dict = {}
 mutation_count_dict = {}
@@ -211,8 +212,7 @@ for line in opened_input_vcf:
 			# output nonsynonymous mutations in query genes
 			if transcript_chosen in transcript_list and consequence_chosen in nonsynonymous_list:
 				
-				opened_output.write(str(SYMBOL_chosen), str(transcript_chosen), str(chr), str(pos), str(ref), str(alt), str(HGVSg_chosen), str(HGVSc_chosen), str(HGVSp_chosen), str(consequence_chose), sep='\t')
-				opene_output.write('\n')
+				output_writer.writerow([str(SYMBOL_chosen), str(transcript_chosen), str(chr), str(pos), str(ref), str(alt), str(HGVSg_chosen), str(HGVSc_chosen), str(HGVSp_chosen), str(consequence_chose)])
 				
 				# query OncoKB API to get annotation
 				
@@ -282,3 +282,5 @@ for anno in annotation:
 	opened_combined_json.write('\n')
 	
 opened_combined_json.close()
+opened_output.close()
+
