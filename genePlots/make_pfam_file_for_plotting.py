@@ -80,7 +80,7 @@ for line in opened_regions_pfam:
 	gene_id, transcript_id, pfam_id, pfam_start, pfam_end, protein_id, canonical, gene_symbol = line.split('\t', 7)
 	
 	# get list of canonical transcripts
-	if int(canonical) == 1:
+	if canonical == '1':
 		if transcript_id not in canonical_transcripts_list:
 			canonical_transcripts_list.append(transcript_id)
 	
