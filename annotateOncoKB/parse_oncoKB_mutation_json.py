@@ -100,7 +100,7 @@ for line in opened_input:
 	#if type(tumorTypeSummary) == unicode:
 	#	tumorTypeSummary = tumorTypeSummary.encode('utf-8')
 	
-	opened_output.writerow([str(geneSummary), str(highestSensitiveLevel), str(dataVersion), str(tumorTypeSummary), str(highestPrognosticImplicationLevel), str(oncogenic), str(alleleExist), str(citations), str(knownEffect), str(proteinStart), str(proteinEnd), str(tumorType), str(hugoSymbol),
+	output_writer.writerow([str(geneSummary), str(highestSensitiveLevel), str(dataVersion), str(tumorTypeSummary), str(highestPrognosticImplicationLevel), str(oncogenic), str(alleleExist), str(citations), str(knownEffect), str(proteinStart), str(proteinEnd), str(tumorType), str(hugoSymbol),
 	str(alteration), str(entrezGeneId), str(hgvs), str(consequence), str(referenceGenome), str(hotspot), str(diagnosticImplications), str(prognosticSummary), str(lastUpdate), str(prognosticImplications), str(treatments), str(geneExist), str(variantExist),
 	str(highestDiagnosticImplicationLevel), str(diagnosticSummary), str(otherSignificantSensitiveLevels), str(otherSignificantResistanceLevels), str(variantSummary), str(vus), str(highestResistanceLevel)])
 	
