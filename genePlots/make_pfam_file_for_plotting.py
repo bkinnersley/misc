@@ -163,7 +163,7 @@ for line in opened_protein_fasta:
 	else:
 		amino_acid_string = amino_acid_string+line.rstrip()
 		
-		if transcript in canonical_transcripts_list and chromosome in chromosomes:
+		if transcript in all_transcripts_list and chromosome in chromosomes:
 			protein_name_dict[transcript] = protein
 			protein_sequence_dict[transcript] = amino_acid_string
 			
