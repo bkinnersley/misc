@@ -78,9 +78,9 @@ transcript_dict = {}
 ensembl_gene_list = []
 
 for line in opened_transcripts_file:
-	line = line.strip()
 	print(line)
 	ensembl_gene_id, ensembl_transcript_id, gene_symbol = line.split('\t', 2)
+	gene_symbol = gene_symbol.strip()
 	
 	if gene_symbol in query_gene_list:
 		ensembl_gene_list.append(ensembl_gene_id)
