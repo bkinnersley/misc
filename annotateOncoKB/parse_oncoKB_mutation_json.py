@@ -36,7 +36,7 @@ output_writer.writerow(['geneSummary', 'highestSensitiveLevel', 'dataVersion', '
 'diagnosticSummary', 'otherSignificantSensitiveLevels', 'otherSignificantResistanceLevels', 'variantSummary', 'vus', 'highestResistanceLevel'])
 
 for line in opened_input:
-	line = line.decode('utf-8').strip()
+	line = line.encode('utf-8').strip()
 	
 	mutation_dict = json.loads(line)
 	
