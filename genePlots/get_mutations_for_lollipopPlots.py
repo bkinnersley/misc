@@ -76,6 +76,7 @@ sample_count = 0
 
 transcript_dict = {}
 ensembl_gene_list = []
+transcript_list = []
 
 for line in opened_transcripts_file:
 	ensembl_gene_id, ensembl_transcript_id, gene_symbol = line.split('\t', 2)
@@ -83,6 +84,9 @@ for line in opened_transcripts_file:
 	
 	if gene_symbol in query_gene_list:
 		ensembl_gene_list.append(ensembl_gene_id)
+	
+	if transcript_id not in transcript_list:
+		transcript_list.append(transcript_id)
 		
 	transcript_dict[ensembl_gene_id] = ensembl_transcript_id
 
