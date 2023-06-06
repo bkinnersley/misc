@@ -17,7 +17,9 @@ if len(sys.argv) == 6:
 else:
 	print('insufficient arguments provided - python make_pfam_file_for_plotting.py <regions_pfam> <pfam_names> <protein_fasta> <pfam_dead> <output>')
 	sys.exit()
-  
+
+chromosomes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', 'X', 'Y', 'MT']
+
 if os.path.isfile(regions_pfam):
 	if regions_pfam.endswith('.gz'):
   		opened_regions_pfam = gzip.open(regions_pfam,'rb')
@@ -95,30 +97,91 @@ pfam_replacement_dict = {}
 pfam_dead_list = []
 
 for line in opened_pfam_dead:
+	if line.startswith('#=GF AC'):
+		fields = line.split()
+		pfam_start_id = fields[2].strip()
+		
+	if line.startswith('#=GF FW'):
+		fields = line.split()
+		
+		if len(fields) == 3:
+			pfam_replacement_id = fields[2].strip()
+			pfam_replacement_dict[pfam_replacement_id] = pfam_start_id
+			
+		else:
+			pfam_dead_list.append(pfam_start_id)
+			pfam_replacement_id = 'MISSING'
+	if line.startswith('//'):
+		pfam_start_id = ''
+		pfam_replacement_id = ''
+		
+pfam_family_dict = {}
+pfam_description_dict = {}
+
+for line in opened_pfam_names:
+	fields = line.split('\t')
+	pfam_domain = fields[0].strip()
+	pfam_family = fields[3].strip()
+	pfam_description = fields[4].strip()
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	if pfam_domain in pfam_replacement_dict:
+		pfam_family_dict[pfam_replacement_dict[pfam_domain]] = pfam_family
+		pfam_description_dict[pfam_replacement_dict[pfam_domain]] = pfam_description
+		
+	if pfam_domain in pfam_domain_list:
+		pfam_family_dict[pfam_domain] = pfam_family
+		pfam_description_dict[pfam_domain] = pfam_description
+		
+protein_sequence_dict = {}
+protein_name_dict = {}
+
+for line in opened_protein_fasta:
+	if line.startswith('>'):
+		line_split = line.split(' ')
+		
+		for query in line_split:
+			if query.startswith('>'):
+				query_split = query.split('>')
+				protein_split = query_split[1].split('.')
+				protein = protein_split[0]
+				
+			if query.startswith('chromosome:GRCh38') and not query.startswith('chromosomes'):
+				query_split = query.split(':')
+				chromosome = query_split[2]
+				
+			if query.startswith('transcript:'):
+				query_split = query.split(':')
+				transcript_split = query_split[1].split('.')
+				transcript = transcript_split[0]
+				
+		amino_acid_string = ''
+	else:
+		amino_acid_string = amino_acid_string+line.rstrip()
+		
+		if transcript in canonical_transcripts_list and chromosome in chromosomes:
+			protein_name_dict[transcript] = protein
+			protein_sequence_dict[transcript] = amino_acid_string
+			
+output_writer.writerow(['HGNC', 'refseq.ID', 'protein.ID', 'aa.length', 'Start', 'End', 'pfam', 'Label', 'Description'])
+
+for transcript in canonical_transcripts_list:
+	if transcript in pfam_per_transcript_dict:
+		query_split = pfam_per_transcript_dict[transcript].split('/')
+		for query in query_split:
+			pfam_split = query.split(':')
+			pfam_domain = pfam_split[0]
+			pfam_start = pfam_split[1]
+			pfam_end = pfam_split[2]
+			
+			if pfam_domain not in pfam_family_dict:
+				pfam_family_dict[pfam_domain] = str(pfam_domain)+'_NA'
+				pfam_description_dict[pfam_domain] = str(pfam_domain)+'_NA'
+				
+			output_writer.writerow([gene_symbol_dict[transcript], str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript]),
+				str(pfam_start), str(pfam_end), str(pfam_domain), str(pfam_family_dict[pfam_domain]), str(pfam_description_dict[pfam_domain])])
+			
+		elif transcript in protein_sequence_dict:
+			output_write.writerow([gene_symbol_dict[transcript], str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript]),
+				'NA', 'NA', 'NA', 'NA', 'NA'])
+									
 	
