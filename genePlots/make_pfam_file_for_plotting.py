@@ -23,9 +23,9 @@ chromosomes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '1
 
 if os.path.isfile(regions_pfam):
 	if regions_pfam.endswith('.gz'):
-  		opened_regions_pfam = gzip.open(regions_pfam,'rb')
+  		opened_regions_pfam = gzip.open(regions_pfam,'rb', encoding='utf-8')
 	else:
-		opened_regions_pfam = gzip.open(regions_pfam, 'rb')
+		opened_regions_pfam = gzip.open(regions_pfam, 'rb', encoding='utf-8')
 	print('reading pfam regions '+regions_pfam)
 else:
 	print('cannot open '+regions_pfam) 
@@ -33,9 +33,9 @@ else:
 	
 if os.path.isfile(pfam_names):
 	if pfam_names.endswith('.gz'):
-  		opened_pfam_names = gzip.open(pfam_names,'rb')
+  		opened_pfam_names = gzip.open(pfam_names,'rb', encoding='utf-8')
 	else:
-		opened_pfam_names = gzip.open(pfam_names, 'rb')
+		opened_pfam_names = gzip.open(pfam_names, 'rb', encoding='utf-8')
 	print('reading pfam names '+pfam_names)
 else:
 	print('cannot open '+pfam_names) 
@@ -43,9 +43,9 @@ else:
 
 if os.path.isfile(protein_fasta):
 	if protein_fasta.endswith('.gz'):
-  		opened_protein_fasta = gzip.open(protein_fasta,'rb')
+  		opened_protein_fasta = gzip.open(protein_fasta,'rb', encoding='utf-8')
 	else:
-		opened_protein_fasta = gzip.open(protein_fasta, 'rb')
+		opened_protein_fasta = gzip.open(protein_fasta, 'rb', encoding='utf-8')
 	print('reading protein fasta '+protein_fasta)
 else:
 	print('cannot open '+protein_fasta) 
@@ -53,9 +53,9 @@ else:
 	
 if os.path.isfile(pfam_dead):
 	if pfam_dead.endswith('.gz'):
-  		opened_pfam_dead = gzip.open(pfam_dead,'rb')
+  		opened_pfam_dead = gzip.open(pfam_dead,'rb', encoding='utf-8')
 	else:
-		opened_pfam_names = gzip.open(pfam_dead, 'rb')
+		opened_pfam_names = gzip.open(pfam_dead, 'rb', encoding='utf-8')
 	print('reading dead pfam information '+pfam_dead)
 else:
 	print('cannot open '+pfam_dead) 
