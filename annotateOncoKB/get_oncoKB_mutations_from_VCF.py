@@ -81,7 +81,7 @@ consequence_broad_list = ['transcript_ablation', 'splice_acceptor_variant', 'spl
 # rank consequences by severity according to https://www.ensembl.org/info/genome/variation/prediction/predicted_data.html
 consequence_severity_dict = {"transcript_ablation":1, "splice_acceptor_variant":2, "splice_donor_variant":3, "stop_gained":4, "frameshift_variant":5, "stop_lost":6, "start_lost":7, "transcript_amplification":8,
 "inframe_insertion":9, "inframe_deletion":10, "missense_variant":11, "protein_altering_variant":12, "splice_region_variant":13, "splice_donor_5th_base_variant":14, "splice_donor_region_variant":15,
-"splice_pyrimidine_tract_variant":16, "incomplete_terminal_codon_variant":17, "start_retained_variant":18, "stop_retained_variant":19, "synonymous_variant":20, "coding_sequence_variant":21, 
+"splice_polypyrimidine_tract_variant":16, "incomplete_terminal_codon_variant":17, "start_retained_variant":18, "stop_retained_variant":19, "synonymous_variant":20, "coding_sequence_variant":21, 
 "mature_miRNA_variant":22, "5_prime_UTR_variant":23, "3_prime_UTR_variant":24, "non_coding_transcript_exon_variant":25, "intron_variant":26, "NMD_transcript_variant":27, "non_coding_transcript_variant":28,
 "upstream_gene_variant":29, "downstream_gene_variant":30, "TFBS_ablation":31, "TFBS_amplification":32, "TF_binding_site_variant":33, "regulatory_region_ablation":34, "regulatory_region_amplification":35,
 "feature_elongation":36, "regulatory_region_variant":37, "feature_truncation":38, "intergenic_variant":39
