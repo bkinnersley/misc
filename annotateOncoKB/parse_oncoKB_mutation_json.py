@@ -85,7 +85,7 @@ for line in opened_input:
 	diagnosticSummary, otherSignificantSensitiveLevels, otherSignificantResistanceLevels, variantSummary, vus, highestResistanceLevel]
 	
 	for var in var_list:
-		if type(var) == unicode:
+		if isinstance(var, str):
 			var = var.encode('utf-8')
 	
 	#if type(geneSummary) == unicode:
