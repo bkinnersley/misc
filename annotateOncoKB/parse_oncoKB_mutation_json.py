@@ -31,7 +31,7 @@ else:
 	
 opened_output = open(output, 'w')
 output_writer = csv.writer(opened_output, delimiter = '\t')
-output_writer.writerow(['geneSummary', 'highestSensitiveLevel'. 'dataVersion', 'tumorTypeSummary', 'highestPrognosticImplicationLevel', 'oncogenic', 'alleleExist', 'citations', 'knownEffect', 'proteinStart', 'proteinEnd', 'tumorType', 'hugoSymbol',
+output_writer.writerow(['geneSummary', 'highestSensitiveLevel', 'dataVersion', 'tumorTypeSummary', 'highestPrognosticImplicationLevel', 'oncogenic', 'alleleExist', 'citations', 'knownEffect', 'proteinStart', 'proteinEnd', 'tumorType', 'hugoSymbol',
 'alteration', 'entrezGeneId', 'hgvs', 'consequence', 'referenceGenome', 'hotspot', 'diagnosticImplications', 'prognosticSummary', 'lastUpdate', 'prognosticImplications', 'treatments', 'geneExist', 'variantExist', 'highestDiagnosticImplicationLevel',
 'diagnosticSummary', 'otherSignificantSensitiveLevels', 'otherSignificantResistanceLevels', 'variantSummary', 'vus', 'highestResistanceLevel'])
 
