@@ -13,7 +13,7 @@ setup(
   license="GPL",
   python_requires='>= 3.7',
   author_email="b.kinnersley@ucl.ac.uk",
-  packages=["genomicFunctions", "annotateOncoKB"],
+  packages=["genomicFunctions", "annotateOncoKB", "genePlots"],
   install_requires=["datetime"],
   include_package_data=True,
   zip_safe=False
