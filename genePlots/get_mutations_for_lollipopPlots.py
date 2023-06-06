@@ -27,7 +27,7 @@ if os.path.isfile(input_samples):
 	if input_samples.endswith('.gz'):
   		opened_input_samples = gzip.open(input_samples,'rt', encoding='utf-8')
 	else:
-		opened_input_samples = gzip.open(input_samples, 'rt', encoding='utf-8')
+		opened_input_samples = open(input_samples, 'rt', encoding='utf-8')
 	print('reading samples '+input_samples)
 else:
 	print('cannot open '+input_samples) 
@@ -37,7 +37,7 @@ if os.path.isfile(gene_list):
 	if gene_list.endswith('.gz'):
   		opened_gene_list = gzip.open(gene_list,'rt', encoding='utf-8')
 	else:
-		opened_gene_list = gzip.open(gene_list, 'rt', encoding='utf-8')
+		opened_gene_list = open(gene_list, 'rt', encoding='utf-8')
 	print('reading genes '+gene_list)
 else:
 	print('cannot open '+gene_list) 
@@ -47,7 +47,7 @@ if os.path.isfile(pfam_file):
 	if pfam_file.endswith('.gz'):
   		opened_pfam_file = gzip.open(pfam_file,'rt', encoding='utf-8')
 	else:
-		opened_pfam_file = gzip.open(pfam_file, 'rt', encoding='utf-8')
+		opened_pfam_file = open(pfam_file, 'rt', encoding='utf-8')
 	print('reading pfam information '+pfam_file)
 else:
 	print('cannot open '+pfam_file) 
@@ -57,7 +57,7 @@ if os.path.isfile(transcripts_file):
 	if transcripts_file.endswith('.gz'):
   		opened_transcripts_file = gzip.open(transcripts_file,'rt', encoding='utf-8')
 	else:
-		opened_transcripts_file = gzip.open(transcripts_file, 'rt', encoding='utf-8')
+		opened_transcripts_file = open(transcripts_file, 'rt', encoding='utf-8')
 	print('reading transcripts '+transcripts_file)
 else:
 	print('cannot open '+transcripts_file) 
