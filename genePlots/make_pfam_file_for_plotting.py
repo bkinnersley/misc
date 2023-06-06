@@ -67,6 +67,7 @@ output_writer = csv.writer(opened_output, delimiter = '\t')
 print('writing to output '+output)
 
 canonical_transcripts_list = []
+all_transcripts_list = []
 gene_symbol_dict = {}
 
 opened_regions_pfam.readline()
@@ -81,7 +82,10 @@ for line in opened_regions_pfam:
 	if int(canonical) == 1:
 		if transcript_id not in canonical_transcripts_list:
 			canonical_transcripts_list.append(transcript_id)
-			
+	
+	if transcript_id not in all_transcripts_list:
+		all_transcripts_list.append(transcript_id)
+	
 	gene_symbol_dict[transcript_id] = gene_symbol
 	
 	if transcript_id not in pfam_per_transcript_dict:
@@ -164,7 +168,7 @@ for line in opened_protein_fasta:
 			
 output_writer.writerow(['HGNC', 'refseq.ID', 'protein.ID', 'aa.length', 'Start', 'End', 'pfam', 'Label', 'Description'])
 
-for transcript in canonical_transcripts_list:
+for transcript in all_transcripts_list:
 	if transcript in pfam_per_transcript_dict:
 		query_split = pfam_per_transcript_dict[transcript].split('/')
 		for query in query_split:
@@ -177,11 +181,11 @@ for transcript in canonical_transcripts_list:
 				pfam_family_dict[pfam_domain] = str(pfam_domain)+'_NA'
 				pfam_description_dict[pfam_domain] = str(pfam_domain)+'_NA'
 				
-			output_writer.writerow([gene_symbol_dict[transcript], str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript]),
+			output_writer.writerow([gene_symbol_dict[transcript], str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
 				str(pfam_start), str(pfam_end), str(pfam_domain), str(pfam_family_dict[pfam_domain]), str(pfam_description_dict[pfam_domain])])
 			
 		elif transcript in protein_sequence_dict:
-			output_write.writerow([gene_symbol_dict[transcript], str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript]),
+			output_write.writerow([gene_symbol_dict[transcript], str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
 				'NA', 'NA', 'NA', 'NA', 'NA'])
 									
 	
