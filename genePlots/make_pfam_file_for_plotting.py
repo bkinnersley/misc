@@ -7,6 +7,7 @@
 import os
 import sys
 import gzip
+import csv
 
 if len(sys.argv) == 6:
 	regions_pfam = sys.argv[1]
