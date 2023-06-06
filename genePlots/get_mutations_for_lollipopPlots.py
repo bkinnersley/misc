@@ -78,7 +78,6 @@ transcript_dict = {}
 ensembl_gene_list = []
 
 for line in opened_transcripts_file:
-	print(line)
 	ensembl_gene_id, ensembl_transcript_id, gene_symbol = line.split('\t', 2)
 	gene_symbol = gene_symbol.strip()
 	
@@ -137,7 +136,9 @@ for line in opened_input_samples:
 	else:
 		print('could not read file '+vcf)
 		continue
-		
+	
+	vep_lookup_dict = {}
+	
 	for line in opened_input_vcf:
 		# lookup VEP annotation orderings in VCF header
 		if line.startswith('##INFO=<ID=CSQ,Number='):
