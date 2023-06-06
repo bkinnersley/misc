@@ -88,6 +88,9 @@ for line in opened_regions_pfam:
 	if transcript_id not in all_transcripts_list:
 		all_transcripts_list.append(transcript_id)
 	
+	if pfam_id not in pfam_domain_list:
+		pfam_domain_list.append(pfam_id)
+	
 	gene_symbol_dict[transcript_id] = gene_symbol
 	
 	if transcript_id not in pfam_per_transcript_dict:
