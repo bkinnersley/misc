@@ -78,6 +78,7 @@ pfam_per_transcript_dict = {}
 
 for line in opened_regions_pfam:
 	gene_id, transcript_id, pfam_id, pfam_start, pfam_end, protein_id, canonical, gene_symbol = line.split('\t', 7)
+	gene_symbol = gene_symbol.strip()
 	
 	# get list of canonical transcripts
 	if canonical == '1':
@@ -182,11 +183,11 @@ for transcript in all_transcripts_list:
 				pfam_family_dict[pfam_domain] = str(pfam_domain)+'_NA'
 				pfam_description_dict[pfam_domain] = str(pfam_domain)+'_NA'
 				
-			output_writer.writerow([gene_symbol_dict[transcript], str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
+			output_writer.writerow([str(gene_symbol_dict[transcript]), str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
 				str(pfam_start), str(pfam_end), str(pfam_domain), str(pfam_family_dict[pfam_domain]), str(pfam_description_dict[pfam_domain])])
 			
 	elif transcript in protein_sequence_dict:
-		output_write.writerow([gene_symbol_dict[transcript], str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
+		output_write.writerow([str(gene_symbol_dict[transcript]), str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
 			'NA', 'NA', 'NA', 'NA', 'NA'])
 									
 	
