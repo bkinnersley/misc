@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 ### extract nonsynonymous mutations in OncoKB transcripts from VCF for OncoKB annotation ###
-### Ben Kinnersley (ben.kinnersley@icr.ac.uk)
+### Ben Kinnersley (b.kinnersley@ucl.ac.uk)
 ### Command line: python get_oncoKB_mutations_from_VCF.py <input_vcf> <subtype> <sample_id> <transcripts_file> <token> <output_dir> <output>
 
 import os
