@@ -269,7 +269,7 @@ for line in opened_input_samples:
 				if HGVSc_split[2].startswith('-'):
 					protein_pos = 1
 				# if 3' UTR splice mutation set to last protein position
-				elif HGVSc_split[2].starswith('*'):
+				elif HGVSc_split[2].startswith('*'):
 					protein_pos = protein_size_dict[canonical_transcript]
 				elif '-' in HGVSc_split[2]:
 					HGVSc_temp = HGVSc_split[2].split('-')
