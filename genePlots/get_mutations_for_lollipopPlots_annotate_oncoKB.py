@@ -147,7 +147,7 @@ for line in opened_protein_fasta:
 			if query.startswith('>'):
 				query_split = query.split('>')
 				protein_split = query_split[1].split('.')
-				transcript = transcript_split[0]
+				protein = protein_split[0]
 			
 			if query.startswith('transcript:'):
 				query_split = query.split(':')
