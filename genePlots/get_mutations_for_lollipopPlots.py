@@ -316,7 +316,7 @@ for line in opened_input_samples:
 				gene_mutations_list_dict[SYMBOL_chosen] = []
 			
 			if mutation not in gene_mutations_list_dict[SYMBOL_chosen]:
-				gene_mutation_list_dict[SYMBOL_chosen].append(mutation)
+				gene_mutations_list_dict[SYMBOL_chosen].append(mutation)
 				
 			if mutation not in carrier_dict:
 				carrier_dict[mutation] = sample_id
