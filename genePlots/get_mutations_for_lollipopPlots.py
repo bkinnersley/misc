@@ -246,8 +246,8 @@ for line in opened_input_samples:
 			
 			# if mutation is protein-coding take protein position from HGVSp annotation, otherwise approximate for splice donor/acceptor mutations using HGVSc change
 			
-			if HGVSp_chosen != '' and HGVSp_canon != 'NA':
-				HGVSp_split = HGVSp_canon.split(':')
+			if HGVSp_chosen != '' and HGVSp_chosen != 'NA':
+				HGVSp_split = HGVSp_chosen.split(':')
 				HGVSp_shortened = HGVSp_split[1]
 				
 				pattern = r"[p\.]+[a-zA-Z]+([0-9]+)[\_]*[a-zA-Z\?\=\%]+"
