@@ -85,8 +85,8 @@ for line in opened_transcripts_file:
 	if gene_symbol in query_gene_list:
 		ensembl_gene_list.append(ensembl_gene_id)
 	
-	if transcript_id not in transcript_list:
-		transcript_list.append(transcript_id)
+	if ensembl_transcript_id not in transcript_list:
+		transcript_list.append(ensembl_transcript_id)
 		
 	transcript_dict[ensembl_gene_id] = ensembl_transcript_id
 
