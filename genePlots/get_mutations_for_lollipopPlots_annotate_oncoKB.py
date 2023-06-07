@@ -133,7 +133,7 @@ for line in opened_oncokb_genes:
 		oncokb_transcript_list.append(transcript)
 		
 	if transcript not in transcript_list:
-		print(str(transcript)+' (oncoKB transcript) is not canonical'
+		print(str(transcript)+' (oncoKB transcript) is not canonical')
 
 protein_sequence_dict = {}
 protein_name_dict = {}
