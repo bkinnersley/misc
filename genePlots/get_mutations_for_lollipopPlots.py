@@ -257,11 +257,17 @@ for line in opened_input_samples:
 				if result.group() is not None:
 					pass
 				else:
-					print('check parsing of '+str(HGVSp_canon)+' in mutation '+str(mutation))
+					print('check parsing of '+str(HGVSp_chosen)+' in mutation '+str(mutation))
 					sys.exit()
 				
 				protein_pos = result.group(1)
 				
+				HGVSc_split = HGVSc_chosen.split('.')
+				transcript = HGVSc_split[0]
+				
+				label = HGVSp_shortened
+				
+			elif HGVSc_canon != "":
 				HGVSc_split = HGVSc_chosen.split('.')
 				transcript = HGVSc_split[0]
 				
@@ -270,7 +276,7 @@ for line in opened_input_samples:
 					protein_pos = 1
 				# if 3' UTR splice mutation set to last protein position
 				elif HGVSc_split[2].startswith('*'):
-					protein_pos = protein_size_dict[canonical_transcript]
+					protein_pos = protein_size_dict[transcript]
 				elif '-' in HGVSc_split[2]:
 					HGVSc_temp = HGVSc_split[2].split('-')
 					pos_split = HGVSc_temp[0].split('_')
