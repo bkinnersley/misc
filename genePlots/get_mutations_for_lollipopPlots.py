@@ -270,7 +270,7 @@ for line in opened_input_samples:
 			elif HGVSc_chosen != "":
 				HGVSc_split = HGVSc_chosen.split('.')
 				transcript = HGVSc_split[0]
-				
+				print(HGVSc_split)
 				# if 5' UTR splice mutation set to protein position 1
 				if HGVSc_split[2].startswith('-'):
 					protein_pos = 1
