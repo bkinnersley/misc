@@ -2,7 +2,7 @@
 
 ### extract nonsynonymous mutations from user supplied transcripts (e.g. ensembl canonical transcripts) from a query set of genes and tumour samples
 ### Ben Kinnersley (b.kinnersley@ucl.ac.uk)
-### Command line: python get_nonsynonymous_mutations_in_query_genes.py <input_samples> <vcf_dir> <gene_list> <pfam_file> <transcripts_file> <output>
+### Command line: python get_mutations_for_lollipopPlots.py <input_samples> <vcf_dir> <gene_list> <pfam_file> <transcripts_file> <output>
 
 import os
 import sys
@@ -18,7 +18,7 @@ if len(sys.argv) == 7:
 	transcripts_file = sys.argv[5]
 	output = sys.argv[6]
 else:
-	print('insufficient arguments provided - python get_nonsynonymous_mutations_in_query_genes.py <input_samples> <vcf_dir> <gene_list> <pfam_file> <transcripts_file> <output>')
+	print('insufficient arguments provided - python get_mutations_forlollipopPlots.py <input_samples> <vcf_dir> <gene_list> <pfam_file> <transcripts_file> <output>')
 	sys.exit()
 
 chromosomes = ['chr1', 'chr2', 'chr3', 'chr4', 'chr5', 'chr6', 'chr7', 'chr8', 'chr9', 'chr10', 'chr11', 'chr12', 'chr13', 'chr14', 'chr15', 'chr16', 'chr17', 'chr18', 'chr19', 'chr20', 'chr21', 'chr22', 'chrX', 'chrY', 'chrM']
