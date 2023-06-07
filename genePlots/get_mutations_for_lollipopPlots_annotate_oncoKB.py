@@ -127,7 +127,7 @@ oncokb_transcript_list = []
 	
 for line in opened_oncokb_genes:
 	fields = line.split('\t')
-	transcripts = fields[0].strip()
+	transcript = fields[0].strip()
 	
 	if transcript not in oncokb_transcript_list:
 		oncokb_transcript_list.append(transcript)
