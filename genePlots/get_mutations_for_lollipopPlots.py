@@ -112,7 +112,7 @@ consequence_severity_dict = {"transcript_ablation":1, "splice_acceptor_variant":
 "feature_elongation":36, "regulatory_region_variant":37, "feature_truncation":38, "intergenic_variant":39
 }
 
-gene_mutation_list_dict = {}
+gene_mutations_list_dict = {}
 mutation_count_dict = {}
 transcript_dict = {}
 protein_pos_dict = {}
