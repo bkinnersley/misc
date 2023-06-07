@@ -267,7 +267,7 @@ for line in opened_input_samples:
 				
 				label = HGVSp_shortened
 				
-			elif HGVSc_canon != "":
+			elif HGVSc_chosen != "":
 				HGVSc_split = HGVSc_chosen.split('.')
 				transcript = HGVSc_split[0]
 				
