@@ -290,7 +290,7 @@ for line in opened_input_samples:
 					
 					protein_pos = int(round(float(transcript_pos)/3))
 				else:
-					'check! '+HGVSc_canon
+					'check! '+HGVSc_chosen
 				
 				label = 'c.'+HGVSc_split[2]
 			
