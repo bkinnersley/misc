@@ -86,7 +86,7 @@ else:
 
 	sys.exit()
   
-  if os.path.isfile(pfam_file):
+if os.path.isfile(pfam_file):
 	if pfam_file.endswith('.gz'):
   		opened_pfam_file = gzip.open(pfam_file,'rt', encoding='utf-8')
 	else:
