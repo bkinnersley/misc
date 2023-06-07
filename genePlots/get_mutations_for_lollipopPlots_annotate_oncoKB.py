@@ -36,7 +36,7 @@ else:
 	print('cannot open '+input_samples) 
 	sys.exit()
   
-  if os.path.isfile(gene_list):
+if os.path.isfile(gene_list):
 	if gene_list.endswith('.gz'):
   		opened_gene_list = gzip.open(gene_list,'rt', encoding='utf-8')
 	else:
