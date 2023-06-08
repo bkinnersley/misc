@@ -190,7 +190,7 @@ for transcript in all_transcripts_list:
 				str(pfam_start), str(pfam_end), str(pfam_domain), str(pfam_family_dict[pfam_domain]), str(pfam_description_dict[pfam_domain])])
 			
 	elif transcript in protein_sequence_dict:
-		output_write.writerow([str(gene_symbol_dict[transcript]), str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
+		output_writer.writerow([str(gene_symbol_dict[transcript]), str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
 			'NA', 'NA', 'NA', 'NA', 'NA'])
 									
 	
