@@ -95,7 +95,7 @@ for line in opened_regions_pfam:
 	
 	if transcript_id not in pfam_per_transcript_dict and pfam_id != '':
 		pfam_per_transcript_dict[transcript_id] = str(pfam_id)+':'+str(pfam_start)+':'+str(pfam_end)
-	else:
+	elif pfam_id != '':
 		pfam_per_transcript_dict[transcript_id] = pfam_per_transcript_dict[transcript_id]+'/'+str(pfam_id)+':'+str(pfam_start)+':'+str(pfam_end)
 	
 # lookup deprecated/changed pfam domain annotations
