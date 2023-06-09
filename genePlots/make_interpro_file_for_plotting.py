@@ -24,7 +24,7 @@ if os.path.isfile(regions_interpro):
 	if regions_interpro.endswith('.gz'):
   		opened_regions_interpro = gzip.open(regions_interpro,'rt', encoding='utf-8')
 	else:
-		opened_regions_interpro = gzip.open(regions_interpro, 'rt', encoding='utf-8')
+		opened_regions_interpro = open(regions_interpro, 'rt', encoding='utf-8')
 	print('reading interpro regions '+regions_interpro)
 else:
 	print('cannot open '+regions_interpro) 
@@ -34,7 +34,7 @@ if os.path.isfile(interpro_entry):
 	if interpro_entry.endswith('.gz'):
   		opened_interpro_entry = gzip.open(interpro_entry,'rt', encoding='utf-8')
 	else:
-		opened_interpro_entry = gzip.open(interpro_entry, 'rt', encoding='utf-8')
+		opened_interpro_entry = open(interpro_entry, 'rt', encoding='utf-8')
 	print('reading interpro entry file '+interpro_entry)
 else:
 	print('cannot open '+interpro_entry) 
@@ -44,7 +44,7 @@ if os.path.isfile(protein_fasta):
 	if protein_fasta.endswith('.gz'):
   		opened_protein_fasta = gzip.open(protein_fasta,'rt', encoding='utf-8')
 	else:
-		opened_protein_fasta = gzip.open(protein_fasta, 'rt', encoding='utf-8')
+		opened_protein_fasta = open(protein_fasta, 'rt', encoding='utf-8')
 	print('reading protein fasta '+protein_fasta)
 else:
 	print('cannot open '+protein_fasta) 
