@@ -2,19 +2,20 @@
 
 ### generate file containing interpro domain information suitable for plotting (for use with MAFtools etc)
 ### Ben Kinnersley (b.kinnersley@ucl.ac.uk)
-### Command line: python make_interpro_file_for_plotting.py <regions_interpro> <protein_fasta> <output>
+### Command line: python make_interpro_file_for_plotting.py <regions_interpro> <interpro_entry> <protein_fasta> <output>
 
 import os
 import sys
 import gzip
 import csv
 
-if len(sys.argv) == 4:
+if len(sys.argv) == 5:
 	regions_interpro = sys.argv[1]
-	protein_fasta = sys.argv[2]
-	output = sys.argv[3]
+	interpro_entry = sys.argv[2]
+	protein_fasta = sys.argv[3]
+	output = sys.argv[4]
 else:
-	print('insufficient arguments provided - python make_interpro_file_for_plotting.py <regions_interpro> <protein_fasta> <output>')
+	print('insufficient arguments provided - python make_interpro_file_for_plotting.py <regions_interpro> <interpro_entry> <protein_fasta> <output>')
 	sys.exit()
 	
 chromosomes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', 'X', 'Y', 'MT']
@@ -27,6 +28,16 @@ if os.path.isfile(regions_interpro):
 	print('reading interpro regions '+regions_interpro)
 else:
 	print('cannot open '+regions_interpro) 
+	sys.exit()
+	
+if os.path.isfile(interpro_entry):
+	if interpro_entry.endswith('.gz'):
+  		opened_interpro_entry = gzip.open(interpro_entry,'rt', encoding='utf-8')
+	else:
+		opened_interpro_entry = gzip.open(interpro_entry, 'rt', encoding='utf-8')
+	print('reading interpro entry file '+interpro_entry)
+else:
+	print('cannot open '+interpro_entry) 
 	sys.exit()
 
 if os.path.isfile(protein_fasta):
@@ -81,6 +92,14 @@ for line in opened_regions_interpro:
 	elif interpro_id != '':
 		interpro_per_transcript_dict[transcript_id] = interpro_per_transcript_dict[transcript_id]+'/'+str(interpro_id)+':'+str(interpro_start)+':'+str(interpro_end)
 
+interpro_type_dict = {}		
+		
+for line in opened_interpro_entry:
+	line = line.strip()
+	interpro_id, interpro_type, interpro_desc = line.split('\t', 2)
+	
+	interpro_type_dict[interpro_id] = interpro_type
+		
 protein_sequence_dict = {}
 protein_name_dict = {}
 
@@ -111,7 +130,7 @@ for line in opened_protein_fasta:
 			protein_name_dict[transcript] = protein
 			protein_sequence_dict[transcript] = amino_acid_string
 			
-output_writer.writerow(['HGNC', 'refseq.ID', 'protein.ID', 'aa.length', 'Start', 'End', 'pfam', 'Label', 'Description'])
+output_writer.writerow(['HGNC', 'refseq.ID', 'protein.ID', 'aa.length', 'Start', 'End', 'pfam', 'Label', 'Description', 'Type'])
 
 for transcript in all_transcripts_list:
 	if transcript in interpro_per_transcript_dict:
@@ -123,8 +142,9 @@ for transcript in all_transcripts_list:
 			interpro_end = interpro_split[2]
 				
 			output_writer.writerow([str(gene_symbol_dict[transcript]), str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
-				str(interpro_start), str(interpro_end), str(interpro_domain), str(interpro_desc_short_dict[interpro_domain]), str(interpro_desc_full_dict[interpro_domain])])
+				str(interpro_start), str(interpro_end), str(interpro_domain), str(interpro_desc_short_dict[interpro_domain]), str(interpro_desc_full_dict[interpro_domain]),
+				str(interpro_type_dict[interpro_id])])
 			
 	elif transcript in protein_sequence_dict:
 		output_writer.writerow([str(gene_symbol_dict[transcript]), str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
-			'NA', 'NA', 'NA', 'NA', 'NA'])
+			'NA', 'NA', 'NA', 'NA', 'NA', 'NA'])
