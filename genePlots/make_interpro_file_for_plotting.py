@@ -142,7 +142,7 @@ for transcript in all_transcripts_list:
 			interpro_end = interpro_split[2]
 			
 			if interpro_domain not in interpro_type_dict:
-				interpro_dict_dict[interpro_domain] = 'NOT_PRESENT'
+				interpro_type_dict[interpro_domain] = 'NOT_PRESENT'
 			
 			output_writer.writerow([str(gene_symbol_dict[transcript]), str(transcript), str(protein_name_dict[transcript]), str(len(protein_sequence_dict[transcript])),
 				str(interpro_start), str(interpro_end), str(interpro_domain), str(interpro_desc_short_dict[interpro_domain]), str(interpro_desc_full_dict[interpro_domain]),
