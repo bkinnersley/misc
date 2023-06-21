@@ -483,8 +483,8 @@ for line in opened_input_samples:
 
 # writing to output
 
-opened_output = open(output, 'w')
-output_writer = csv.writer(opened_output, delimiter = '\t')
+opened_output = open(output, 'w', newline='')
+output_writer = csv.writer(opened_output, delimiter = '\t', lineterminator='\n')
 output_writer.writerow(['gene', 'transcript', 'mutation', 'count', 'protein_pos', 'label', 'consequence', 'oncogenic', 'knownEffect', 'hotspot', 'vus', 'carriers'])
 
 for gene in query_gene_list:
