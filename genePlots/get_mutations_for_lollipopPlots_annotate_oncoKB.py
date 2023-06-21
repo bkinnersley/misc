@@ -427,9 +427,9 @@ for line in opened_input_samples:
 				protein_pos = 1
 				
 				if pos == '1295113':
-					label = 'C250T'
-				elif pos == '1295135':
 					label = 'C228T'
+				elif pos == '1295135':
+					label = 'C250T'
 			else:
 				print(input_vcf)
 				print('ignoring query mutation with missing HGVSc and HGVSp '+str(mutation)+' ('+str(SYMBOL_chosen)+') - '+str(consequence_chosen))
