@@ -12,6 +12,8 @@ def convert_date_to_datetime(x):
   # check for cases where year is incorrect (e.g. 2018 rather than 18)
   if len(str(x_split[2])) == 4:
     year = int(''.join(list(x_split[2])[2:]))
+    month = int(x_split[1])
+    day = int(x_split[0])
   else:
     year = int(x_split[2])
     month = int(x_split[1])
